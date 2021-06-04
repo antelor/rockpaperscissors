@@ -56,29 +56,36 @@ game = (e) => {
 
     pS=playerSelection.toLowerCase();
 
-    round(playerSelection);
-
-    if(puntosPlayer==5 || puntosCompu==5){
-        if(puntosCompu==puntosPlayer)    {
-            ganador.textContent = 'Empate!!';
-    
-            puntosCompu = 0;
-            puntosPlayer = 0;
-        }
-        else if(puntosCompu<puntosPlayer) {
+    if(puntosPlayer<5 && puntosCompu<5) {
+        round(playerSelection);
+    }
+    else{
+        if(puntosCompu<puntosPlayer) {
             ganador.textContent = 'Ganaste la partida!';
+            ganador.classList.add('ganador--player');
 
-            puntosCompu = 0;
-            puntosPlayer = 0;
+            buttons.appendChild(reinicioButton);
         }
         else {
             ganador.textContent = 'Gana la computadora!';
+            ganador.classList.add('ganador--compu');
 
-            puntosCompu = 0;
-            puntosPlayer = 0;
+            buttons.appendChild(reinicioButton);
         }
     }
+}
 
+reinicio = () =>{
+    puntosPlayer=0;
+    puntosCompu=0;
+    while(resultado.firstChild){
+        resultado.removeChild(resultado.firstChild);
+    }
+    while(ganador.firstChild){
+        ganador.removeChild(ganador.firstChild);
+    }
+    
+    buttons.removeChild(reinicioButton);
 }
 
 const buttpiedra = document.querySelector('button[class=buttpiedra]');
@@ -86,7 +93,10 @@ const buttpapel = document.querySelector('button[class=buttpapel]');
 const butttijera = document.querySelector('button[class=butttijera]');
 const resultado = document.querySelector('[class=resultado]');
 const ganador = document.querySelector('[class=ganador]');
+const buttons = document.querySelector('[class=buttons]');
 
+const reinicioButton = document.createElement('button');
+reinicioButton.textContent = 'Reiniciar';
 
 let puntosCompu=0;
 let puntosPlayer=0;
@@ -94,3 +104,4 @@ let puntosPlayer=0;
 buttpiedra.addEventListener('click', game);
 buttpapel.addEventListener('click', game);
 butttijera.addEventListener('click', game);
+reinicioButton.addEventListener('click', reinicio);

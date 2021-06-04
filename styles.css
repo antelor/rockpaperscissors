@@ -1,0 +1,39 @@
+:root{
+    box-sizing: border-box;
+}
+
+*,
+::before
+::after{
+    box-sizing: inherit;
+}
+
+body{
+    background-color: lightgray;
+    display: grid;
+    justify-content: center;
+}
+
+.buttons{
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    width: auto;
+    padding: 1em 10em;
+}
+
+.resultado{
+    background-color: lightblue;
+}
+
+.ganador--empate{
+    background-color: lightsalmon;
+}
+
+.ganador--player{
+    background-color: green;
+}
+
+.ganador--compu{
+    background-color: red;
+}
